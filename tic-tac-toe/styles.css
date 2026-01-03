@@ -1,0 +1,70 @@
+/* Reset and base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+h1, h2#status { margin-bottom: 15px; }
+
+/* Controls and scoreboard */
+#controls { margin-bottom: 15px; }
+#mode-select label, #difficulty-select label {
+  margin-right: 10px; font-weight: bold;
+}
+#scoreboard { margin-bottom: 15px; font-size: 1.1em; }
+#scoreboard span { margin: 0 10px; font-weight: bold; }
+
+/* Game board grid (3×3) */
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 90vw;   /* Responsive width */
+  max-width: 400px;
+  aspect-ratio: 1/1;  /* Keep it square:contentReference[oaicite:7]{index=7}:contentReference[oaicite:8]{index=8} */
+  margin-bottom: 15px;
+}
+.square {
+  background: #f0f0f0;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.square.x { color: blue; }   /* X = blue */
+.square.o { color: red; }    /* O = red */
+
+/* Glowing click animation (CSS keyframes):contentReference[oaicite:9]{index=9} */
+.square.clicked {
+  animation: glow 0.5s ease-out;
+}
+@keyframes glow {
+  from { box-shadow: 0 0 10px #aef4af; }
+  to   { box-shadow: 0 0 20px #aef4af; }
+}
+
+/* Highlight winning cells */
+.square.win {
+  background-color: yellow;
+}
+
+/* Buttons */
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+}
+button:hover { background-color: #ddd; }
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .square { font-size: 2rem; }
+  button { width: 100px; padding: 8px; }
+}
